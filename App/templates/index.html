@@ -1,0 +1,195 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>	
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+	</head>
+	<body>
+		<nav >
+			<div class="logo-name">
+		<img src="{{url_for('static', filename='img/logo.png')}}" height="90px" width="200px"/>
+	
+				
+			</div>
+	
+			<div class="menu-items" >
+				<ul class="nav-links" style="list-style: none;">
+					<li><a href="#">
+						<i class="uil uil-estate"></i>
+						<span class="link-name">Dahsboard</span>
+					</a></li>
+					<li><a href="#">
+						<i class="uil uil-university"></i>
+						<span class="link-name">Facultés</span>
+					</a></li>
+					<li><a href="#">
+						<i class="uil uil-browser"></i>
+						<span class="link-name">Services</span>
+					</a></li>
+					<li><a href="#">
+						<i class="uil uil-book"></i>
+						<span class="link-name">Bibliothèque</span>
+					</a></li>
+					<li><a href="#">
+						<i class="uil uil-envelope-question"></i>
+						<span class="link-name">Messages</span>
+					</a></li>
+					<!-- <li><a href="#">
+						<i class="uil uil-share"></i>
+						<span class="link-name">Share</span>
+					</a></li> -->
+				</ul>
+				
+				<ul class="logout-mode">
+					<li><a href="#">
+						<i class="uil uil-signout"></i>
+						<span class="link-name">Logout</span>
+					</a></li>
+	
+					<li class="mode">
+						<a href="#">
+							
+						<span class="link-name"></span>
+					</a>
+	
+					
+				</li>
+				</ul>
+			</div>
+		</nav>
+	
+		<section class="dashboard">
+			<div class="top" style="display: flex; justify-content: space-between;"> 
+				<h1 style="color: #707070;">Tableau de bord PRAVAN</h1>
+				<div >
+					<a href="#" style="text-decoration: none;" onclick="loadData() ">
+					<!-- <button style="padding: 0;border: none;background: none;"> -->
+						<h1 style="font-size: 20px; display:inline; color:#707070;"><i class="uil uil-sync"></i></h1>
+						<h1 class="link-name" style="font-size: 20px; display:inline; color:#707070;">Actualiser </h1>
+					<!-- </button> -->
+					</a>
+				</div>
+				<!--<img src="images/profile.jpg" alt="">-->
+			</div>
+	
+			<div class="dash-content">
+				<div class="overview">
+					<div class="title">
+						
+					</div>
+	
+					<div class="boxes">
+						<div class="box box1">
+							<i class="uil uil-users-alt"></i>
+							
+							<span class="text">Le nombre totale d'étudiants</span>
+							<span class="number" id="num1"></span>
+						</div>
+						<div class="box box2">
+							<i class="uil uil-award"></i>
+							<span class="text">Le nombre totale de réussis </span>
+							<span class="number"  id="num2"></span>
+						</div>
+						<div class="box box3">
+							<i class="uil uil-books"></i>
+							<span class="text">Le nombre de spécialités</span>
+							<span class="number"  id="num3"></span>
+						</div>
+					</div>
+				</div>
+	
+				<div class="activity">
+					
+	
+					
+
+						<div class="card" id="card1">	
+							<div class="card-header" style="background-color: rgba(75, 192, 192, 0.2);">
+								<p  style="color:#000">Le nombre d'étudiants par spécialité par années</p>
+								
+							</div>
+							<div class="card-content" id="cardTable1">	
+								<canvas id="chart1" width="500" height="400"></canvas>
+							</div>
+						</div>
+
+
+
+						<div class="card" id="card2">	
+							<div class="card-header" style="background-color: rgba(255, 99, 132, 0.2);">
+								<p  style="color:#000">Le nombre d'étudiants par années</p>
+							</div>
+							<div class="card-content" id="cardTable2">	
+								<canvas id="chart2" width="600" height="400"></canvas>
+							</div>
+						</div>
+
+						<div class="card" id="card3">	
+							<div class="card-header" style="background-color: rgba(255, 159, 64, 0.2)">
+								<p  style="color:#000">Le nombre de réussis par années</p>
+								
+							</div>
+							<div class="card-content" id="cardTable3">	
+								<canvas id="chart3" width="500" height="400"></canvas>
+							</div>
+						</div>
+
+						<div class="card" id="card4">	
+							<div class="card-header" style="background-color: rgba(255, 205, 86, 0.2);">
+								<p  style="color:#000">Le nombre de réussis par spécialités par années</p>
+							</div>
+							<div class="card-content" id="cardTable4">	
+								<canvas id="chart4" width="500" height="400"></canvas>
+							</div>
+						</div>
+					
+						<div class="card" id="card5">	
+							<div class="card-header" style="background-color: rgba(54, 162, 235, 0.2);">
+								<p  style="color:#000">Le nombre de réussis par genre par années</p>
+							</div>
+							<div class="card-content" id="cardTable5">	
+								<canvas id="chart5" width="500" height="400"></canvas>
+							</div>
+						</div>
+
+						<div class="card" id="card6">	
+							<div class="card-header" style="background-color: rgba(153, 102, 255, 0.2)">
+								<p  style="color:#000">Le nombre d'étudiants par spécialité</p>
+							</div>
+							<div class="card-content" id="cardTable6">	
+								<canvas id="chart6" width="500" height="400"></canvas>
+							</div>
+						</div>
+	
+
+						<div class="card" id="card7">	
+							<div class="card-header" style="background-color: rgba(75, 192, 192, 0.2);">
+								<p  style="color:#000">Le nombre d'hommes par spécialité par année</p>
+							</div>
+							<div class="card-content" id="cardTable7">	
+								<canvas id="chart7" width="500" height="400"></canvas>
+							</div>
+						</div>
+
+						<div class="card" id="card8" style="border-color:#E7D1FC;">	
+							<div class="card-header" style="background-color: rgba(255, 205, 86, 0.2);">
+								<p style="color:#000">Le nombre de femmes par spécialité par année</p>
+							</div>
+							<div class="card-content" id="cardTable8">	
+								<canvas id="chart8" width="500" height="400"></canvas>
+							</div>
+						</div>
+
+				</div>
+
+			</div>
+		</section>
+	
+		
+		<script src="{{url_for('static', filename='script.js')}}"></script>
+		
+	</body>
+</html>
